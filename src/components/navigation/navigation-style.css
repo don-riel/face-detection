@@ -1,0 +1,11 @@
+.sign_out {
+    display: flex;
+    justify-content: flex-end;
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+
+.sign_out:hover {
+    cursor: pointer;
+    color: gray;
+}

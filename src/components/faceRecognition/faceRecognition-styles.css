@@ -1,0 +1,21 @@
+.image-wrapper {
+     margin: 0 auto;
+     width: 95%;
+     max-width: 700px;
+        position: relative;
+}
+
+img {
+    width: 100%;
+    height: auto; 
+}
+
+.bounding-box {
+    position: absolute;
+    box-shadow: 0 0 0 3px #149df2 inset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+
+}
