@@ -1,27 +1,19 @@
 import React from 'react';
 
 import './faceRecognition-styles.css'
+import FaceBox from '../faceBox/FaceBox';
 
-const FaceRecognition = ({imageUrl, box}) => {
+const FaceRecognition = ({imageUrl, data}) => {
     return (
         <div className='image-wrapper'>
             <img 
                 id='inputimage'
                 src={imageUrl} 
-                alt=''
-            />
-            <div 
-                className='bounding-box'
-                style= {{
-                    top: box.topRow,
-                    right: box.rightCol,
-                    bottom: box.bottomRow,
-                    left: box.leftCol
-                }}
-            >
-            </div>
+                alt=''            />
+            <FaceBox data={data}/> 
         </div>
     )
 }
 
 export default FaceRecognition;
+

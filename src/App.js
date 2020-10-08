@@ -9,7 +9,6 @@ import Rank from './components/rank/Rank'
 import FaceRecognition from './components/faceRecognition/FaceRecognition'
 
 
-
 const app = new Clarifai.App({
   apiKey: '5a9a523ce0684b309ca20b1362ecf2a0'
  });
@@ -34,26 +33,9 @@ class App extends React.Component {
     this.state = {
       input: '',
       imageUrl: '',
-      box: {},
+      output: [],
+      
     }
-  }
-
-  calculateFaceLocation = (data) => {
-    const location = data.outputs[0].data.regions[0].region_info.bounding_box
-    const image = document.getElementById('inputimage');
-    const width = Number(image.width);
-    const height =  Number(image.height);
-    return {
-      leftCol: location.left_col * width,
-      topRow: location.top_row * height,
-      rightCol: width - (location.right_col * width),
-      bottomRow: height - (location.bottom_row *  height)
-    }
-  }
-
-  displayFaceBox = (box) => {
-    // console.log(box)
-    this.setState({box: box})
   }
 
   onInputChange = (event) => {
@@ -69,8 +51,9 @@ class App extends React.Component {
       this.state.input
     )
     .then((response) => {
-      console.log(response)
-      this.displayFaceBox(this.calculateFaceLocation(response));
+      console.log(typeof response)
+      this.setState({output: response.outputs[0].data.regions})
+      
     })
     .catch((err) => {
       console.log(err);
@@ -91,7 +74,8 @@ class App extends React.Component {
           onButtonSubmit = {this.onSubmit}  
         />  
       </div>
-      <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+      <p>{this.state.output.length ? `There ${this.state.output.length > 1 ? 'are': 'is'} ${this.state.output.length} ${this.state.output.length > 1 ? 'faces': 'face'} detected!` : ''}</p>
+      <FaceRecognition data={this.state.output} imageUrl={this.state.imageUrl} />
       
     </div>
   );
