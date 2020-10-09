@@ -3,7 +3,7 @@ import React from 'react';
 import './faceBox.css'
 
 const calculateFaceLocation = (item) => {
-    const location = item.region_info.bounding_box
+    const location = item.region_info.bounding_box //coordinates of the faces
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height =  Number(image.height);
@@ -16,7 +16,6 @@ const calculateFaceLocation = (item) => {
   }
 
 const FaceBox = ({data}) => (
-
     data.map(item => { 
             const dotLocations = calculateFaceLocation(item);
             return (
