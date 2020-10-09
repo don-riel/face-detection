@@ -46,23 +46,23 @@
 
 @keyframes scanLeft {
    0% {left: 0px}
-   25% {left: 95%;}
+   25% {left: 99%;}
    50% {left: 0;}
-   75% {left: 95%;}
-   100% {left: 0px;}
+   75% {left: 99%;}
+   99% {left: 0px;}
 }
 
 @keyframes scanRight {
-    0% {left: 95%}
+    0% {left: 99%}
     25% {left: 0;}
-    50% {left: 95%;}
+    50% {left: 99%;}
     75% {left: 0;}
-    100% {left: 95%;}
+    99% {left: 99%;}
  }
   
 
 img {
-    width: 100%;
+    width: 99%;
     height: auto; 
 }
 
