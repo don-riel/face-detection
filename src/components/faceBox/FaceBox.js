@@ -18,8 +18,6 @@ const calculateFaceLocation = (item) => {
 const FaceBox = ({data}) => (
 
     data.map(item => { 
-            console.log(item)
-          
             const dotLocations = calculateFaceLocation(item);
             return (
                 <div
@@ -33,7 +31,6 @@ const FaceBox = ({data}) => (
                     key = {item.id}
                 >
                 </div>
-        
             )
         }
     )

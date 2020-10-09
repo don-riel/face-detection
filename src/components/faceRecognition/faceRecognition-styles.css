@@ -1,11 +1,68 @@
 .image-wrapper {
-     margin: 0 auto;
-     width: 95%;
-     max-width: 700px;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 700px;
     position: relative;
 }
+
+
+.scanner::after {
+    content: '';
+    height: 99%;
+    width: 5px;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    background-color:  rgb(224, 30, 30);
+    position: absolute;
+    z-index: 999;
+    animation: scanLeft 4s;
+    animation-iteration-count: infinite;
+    display: none;
+}
+
+.scanner::before {
+    content: '';
+    height: 99%;
+    width: 5px;
+    top: 0;
+    left: 95%;
+    opacity: 0.5;
+    background-color: rgb(224, 30, 30);
+    position: absolute;
+    z-index: 999;
+    animation: scanRight 4s;
+    animation-iteration-count: infinite;
+    display: none;
+}
+
+.toggle-scanner::after {
+    display: initial;
+}
+
+.toggle-scanner::before {
+    display: initial;
+}
+
+@keyframes scanLeft {
+   0% {left: 0px}
+   25% {left: 95%;}
+   50% {left: 0;}
+   75% {left: 95%;}
+   100% {left: 0px;}
+}
+
+@keyframes scanRight {
+    0% {left: 95%}
+    25% {left: 0;}
+    50% {left: 95%;}
+    75% {left: 0;}
+    100% {left: 95%;}
+ }
+  
 
 img {
     width: 100%;
     height: auto; 
 }
+

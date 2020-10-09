@@ -5,13 +5,16 @@ import FaceBox from '../faceBox/FaceBox';
 
 const FaceRecognition = ({imageUrl, data}) => {
     return (
-        <div className='image-wrapper'>
+        <div className={`image-wrapper ${data.length === 0 ? `scanner ${imageUrl.length  ? 'toggle-scanner' : ''}` : ''}`}
+        >
             <img 
                 id='inputimage'
                 src={imageUrl} 
-                alt=''            />
+                alt=''            
+            />
             <FaceBox data={data}/> 
         </div>
+        
     )
 }
 

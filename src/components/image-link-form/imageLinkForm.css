@@ -35,3 +35,7 @@ p {
     font-weight: 600;
     margin: 0 0 1em;
 }
+
+li {
+    list-style: none;
+}

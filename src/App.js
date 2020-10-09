@@ -8,10 +8,10 @@ import FaceRecognition from './components/faceRecognition/FaceRecognition'
 
 
 const app = new Clarifai.App({
-  apiKey: '5a9a523ce0684b309ca20b1362ecf2a0'
- });
+  apiKey: process.env.REACT_APP_API_KEY
+});
 
-const particleOptions = {
+const particleOptions = { //paramas for Particles background component
   particles: {
     number: {
       value: 30,
@@ -23,8 +23,6 @@ const particleOptions = {
   }
 }
 
-
-
 class App extends React.Component {
   constructor() {
     super();
@@ -32,6 +30,7 @@ class App extends React.Component {
       input: '',
       imageUrl: '',
       output: [],
+      urlValid: true
       
     }
   }
@@ -41,20 +40,20 @@ class App extends React.Component {
   }
 
   onSubmit = () => {
+    this.setState({output: []})   //reset the state
+    this.setState({urlValid: true}) //reset the state
     this.setState({imageUrl: this.state.input})
     app.models
     .predict(
       Clarifai.FACE_DETECT_MODEL,
-      // THE JPG
       this.state.input
     )
     .then((response) => {
-      console.log(typeof response)
-      this.setState({output: response.outputs[0].data.regions})
-      
+      this.setState({output: response.outputs[0].data.regions})  
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err)
+      this.setState({urlValid: false})
     });
   };
 
@@ -70,9 +69,21 @@ class App extends React.Component {
           onButtonSubmit = {this.onSubmit}  
         />  
       </div>
-      <p>{this.state.output.length ? `There ${this.state.output.length > 1 ? 'are': 'is'} ${this.state.output.length} ${this.state.output.length > 1 ? 'faces': 'face'} detected!` : ''}</p>
-      <FaceRecognition data={this.state.output} imageUrl={this.state.imageUrl} />
-      
+      {this.state.urlValid 
+        ? <div>
+            <p>{this.state.output.length 
+                  ? `There ${this.state.output.length > 1 
+                    ? 'are'
+                    : 'is'} ${this.state.output.length} 
+                      ${this.state.output.length > 1 
+                      ? 'faces'
+                      : 'face'} detected!` 
+                  : ''
+                }
+            </p>
+            <FaceRecognition data={this.state.output} imageUrl={this.state.imageUrl}/>  
+          </div> 
+        : this.state.urlValid ? ' ' : 'Invalid Url!'} 
     </div>
   );
   };
